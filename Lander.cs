@@ -1,16 +1,18 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Lander : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Debug.Log("Hello World, Git Working");
-    }
 
+public class Lander : MonoBehaviour {
     // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
+        if (Keyboard.current.upArrowKey.isPressed) {
+            Debug.Log("Up");
+        }
+        if (Keyboard.current.leftArrowKey.isPressed) {
+            Debug.Log("Left");
+        }
+        if (Keyboard.current.rightArrowKey.isPressed) {
+            Debug.Log("Right");
+        }
     }
 }
