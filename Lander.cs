@@ -65,43 +65,33 @@ public class Lander : MonoBehaviour {
         switch (state) {
             default:
             case State.WaitingToStart:
-                if (Keyboard.current.upArrowKey.isPressed ||
-                    Keyboard.current.leftArrowKey.isPressed ||
-                    Keyboard.current.rightArrowKey.isPressed) {
+                if (GameInput.Instance.IsUpActionPressed() ||
+                    GameInput.Instance.IsLeftActionPressed() ||
+                    GameInput.Instance.IsRightActionPressed()) {
                     // Pressing any input
                     landerRigidBody2D.gravityScale = GRAVITY_NORMAL;
                     SetState(State.Normal);
                 }
                 break;
             case State.Normal:
-                //Debug.Log(fuelAmount);
                 if(fuelAmount <= 0f) {
                     // No fuel
                     return;
                 }
 
-                /* Used for only one fuel call, instead of multiple per key pressed
-                if (Keyboard.current.upArrowKey.isPressed ||
-                    Keyboard.current.leftArrowKey.isPressed ||
-                    Keyboard.current.rightArrowKey.isPressed) {
-                    // Pressing any input
-                    ConsumeFuel();
-                }
-                */
-
-                if (Keyboard.current.upArrowKey.isPressed) {
+                if (GameInput.Instance.IsUpActionPressed()) {
                     float force = 700f;
                     landerRigidBody2D.AddForce(force * transform.up * Time.deltaTime);
                     ConsumeFuel();
                     OnUpForce?.Invoke(this, EventArgs.Empty);
                 }
-                if (Keyboard.current.leftArrowKey.isPressed) {
+                if (GameInput.Instance.IsLeftActionPressed()) {
                     float turnSpeed = +100f;
                     landerRigidBody2D.AddTorque(turnSpeed * Time.deltaTime);
                     ConsumeFuel();
                     OnLeftForce?.Invoke(this, EventArgs.Empty);
                 }
-                if (Keyboard.current.rightArrowKey.isPressed) {
+                if (GameInput.Instance.IsRightActionPressed()) {
                     float turnSpeed = -100f;
                     landerRigidBody2D.AddTorque(turnSpeed * Time.deltaTime);
                     ConsumeFuel();
