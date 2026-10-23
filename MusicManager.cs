@@ -9,7 +9,7 @@ public class MusicManager : MonoBehaviour
     private const int MUSIC_VOLUME_MAX = 10;
 
     private static float musicTime;
-    private static int musicVolume = 4;
+    private static int musicVolume = 2;
 
     public event EventHandler OnMusicVolumeChanged;
 
